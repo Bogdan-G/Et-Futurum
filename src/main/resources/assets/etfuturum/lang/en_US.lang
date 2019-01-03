@@ -4,6 +4,9 @@ itemGroup.etfuturum=Et Futurum
 # Enchantments
 enchantment.frost_walker=Frost Walker
 enchantment.mending=Mending
+enchantment.waterWalker=Depth Strider
+enchantment.binding_curse=§cCurse of Binding
+enchantment.vanishing_curse=§cCurse of Vanishing
 
 # Containers
 container.etfuturum.banner=Banner
@@ -22,6 +25,13 @@ entity.etfuturum.villager_zombie.name=Villager Zombie
 entity.etfuturum.end_crystal.name=End Crystal
 entity.etfuturum.ender_dragon.name=Ender Dragon
 entity.etfuturum.snow_golem.name=Snow Golem
+
+entity.etfuturum.stray.name=Stray
+entity.etfuturum.husk.name=Husk
+entity.etfuturum.guardian.name=Guardian
+entity.etfuturum.elder_guardian.name=Elder Guardian
+entity.etfuturum.shulker.name=Shulker
+entity.etfuturum.polar_bear.name=Polar Bear
 
 # Items
 item.etfuturum.mutton_raw.name=Raw Mutton
@@ -43,8 +53,11 @@ item.etfuturum.dragon_breath.name=Dragon's Breath
 item.etfuturum.elytra.name=Elytra
 item.etfuturum.end_crystal.name=End Crystal
 potion.prefix.lingering=Lingering
+item.etfuturum.totem_of_undying.name=Totem of Undying
 
 # Arrows
+item.etfuturum.tipped_arrow.name=Tipped Arrow
+tipped_arrow.effect.empty.name=Uncraftable Tipped Arrow
 tipped_arrow.potion.nightVision.name=Arrow of Night Vision
 tipped_arrow.potion.invisibility.name=Arrow of Invisibility
 tipped_arrow.potion.jump.name=Arrow of Leaping
@@ -59,6 +72,7 @@ tipped_arrow.potion.regeneration.name=Arrow of Regeneration
 tipped_arrow.potion.damageBoost.name=Arrow of Strength
 tipped_arrow.potion.weakness.name=Arrow of Weakness
 
+
 # Blocks
 tile.etfuturum.stone_granite.name=Granite
 tile.etfuturum.stone_granite_smooth.name=Polished Granite
@@ -71,10 +85,10 @@ tile.etfuturum.prismarine_block_rough.name=Prismarine
 tile.etfuturum.prismarine_block_bricks.name=Prismarine Bricks
 tile.etfuturum.prismarine_block_dark.name=Dark Prismarine
 tile.etfuturum.sea_lantern.name=Sea Lantern
-tile.etfuturum.daylight_detector_inverted.name=Inverted Daylight Sensor
+tile.etfuturum.daylight_detector_inverted.name=Inverted Daylight Detector
 tile.etfuturum.red_sandstone_default.name=Red Sandstone
 tile.etfuturum.red_sandstone_chiseled.name=Chiseled Red Sandstone
-tile.etfuturum.red_sandstone_smooth.name=Smooth Red Sandstone
+tile.etfuturum.red_sandstone_smooth.name=Cut Red Sandstone
 tile.etfuturum.red_sandstone_slab.name=Red Sandstone Slab
 tile.etfuturum.red_sandstone_stairs.name=Red Sandstone Stairs
 tile.etfuturum.red_mushroom.name=Mushroom
@@ -120,6 +134,133 @@ tile.etfuturum.anvil.intact.name=Anvil
 tile.etfuturum.anvil.slightlyDamaged.name=Slightly Damaged Anvil
 tile.etfuturum.anvil.veryDamaged.name=Very Damaged Anvil
 tile.etfuturum.daylight_sensor.name=Daylight Sensor
+
+#tile.etfuturum..name=
+
+tile.etfuturum.magma.name=Magma Block
+tile.etfuturum.nether_wart.name=Nether Wart Block
+tile.etfuturum.red_netherbrick.name=Red Nether Bricks
+tile.etfuturum.bone.name=Bone Block
+
+tile.prismarine_stairs.name=Prismarine Stairs
+tile.prismarine_stairs_brick.name=Prismarine Bricks Stairs
+tile.prismarine_stairs_dark.name=Dark Prismarine Stairs
+
+tile.etfuturum.prismarine_slab.name=Prismarine Slab
+tile.etfuturum.prismarine_slab_brick.name=Prismarine Bricks Slab
+tile.etfuturum.prismarine_slab_dark.name=Dark Prismarine Slab
+
+tile.etfuturum.log_stripped_0.name=Stripped Oak Log
+tile.etfuturum.log_stripped_1.name=Stripped Spruce Log
+tile.etfuturum.log_stripped_2.name=Stripped Birch Log
+tile.etfuturum.log_stripped_3.name=Stripped Jungle Log
+tile.etfuturum.log2_stripped_0.name=Stripped Acacia Log
+tile.etfuturum.log2_stripped_1.name=Stripped Dark Oak Log
+
+tile.etfuturum.trapdoor_spruce.name=Spruce Trapdoor
+tile.etfuturum.trapdoor_birch.name=Birch Trapdoor
+tile.etfuturum.trapdoor_jungle.name=Jungle Trapdoor
+tile.etfuturum.trapdoor_acacia.name=Acacia Trapdoor
+tile.etfuturum.trapdoor_dark_oak.name=Dark Oak Trapdoor
+
+tile.etfuturum.pressure_plate_spruce.name=Spruce Pressure Plate
+tile.etfuturum.pressure_plate_birch.name=Birch Pressure Plate
+tile.etfuturum.pressure_plate_jungle.name=Jungle Pressure Plate
+tile.etfuturum.pressure_plate_acacia.name=Acacia Pressure Plate
+tile.etfuturum.pressure_plate_dark_oak.name=Dark Oak Pressure Plate
+
+tile.etfuturum.button_spruce.name=Spruce Button
+tile.etfuturum.button_birch.name=Birch Button
+tile.etfuturum.button_jungle.name=Jungle Button
+tile.etfuturum.button_acacia.name=Acacia Button
+tile.etfuturum.button_dark_oak.name=Dark Oak Button
+
+tile.etfuturum.bark_0.name=Oak Bark
+tile.etfuturum.bark_1.name=Spruce Bark
+tile.etfuturum.bark_2.name=Birch Bark
+tile.etfuturum.bark_3.name=Jungle Bark
+tile.etfuturum.bark_4.name=Acacia Bark
+tile.etfuturum.bark_5.name=Dark Oak Bark
+
+#pretend these don't have to exist for WAILA
+tile.etfuturum.log_stripped_4.name=Stripped Oak Log
+tile.etfuturum.log_stripped_5.name=Stripped Spruce Log
+tile.etfuturum.log_stripped_6.name=Stripped Birch Log
+tile.etfuturum.log_stripped_7.name=Stripped Jungle Log
+tile.etfuturum.log_stripped_8.name=Stripped Oak Log
+tile.etfuturum.log_stripped_9.name=Stripped Spruce Log
+tile.etfuturum.log_stripped_10.name=Stripped Birch Log
+tile.etfuturum.log_stripped_11.name=Stripped Jungle Log
+tile.etfuturum.log_stripped_12.name=Stripped Oak Log
+tile.etfuturum.log_stripped_13.name=Stripped Spruce Log
+tile.etfuturum.log_stripped_14.name=Stripped Birch Log
+tile.etfuturum.log_stripped_15.name=Stripped Jungle Log
+
+tile.etfuturum.log2_stripped_4.name=Stripped Acacia Log
+tile.etfuturum.log2_stripped_5.name=Stripped Dark Oak Log
+tile.etfuturum.log2_stripped_8.name=Stripped Acacia Log
+tile.etfuturum.log2_stripped_9.name=Stripped Dark Oak Log
+#
+
+#tile.etfuturum.glazedTerracottaWhite.name=White Glazed Terracotta
+#tile.etfuturum.glazedTerracottaOrange.name=Orange Glazed Terracotta
+#tile.etfuturum.glazedTerracottaMagenta.name=Magenta Glazed Terracotta
+#tile.etfuturum.glazedTerracottaLightBlue.name=Light Blue Glazed Terracotta
+#tile.etfuturum.glazedTerracottaYellow.name=Yellow Glazed Terracotta
+#tile.etfuturum.glazedTerracottaLime.name=Lime Glazed Terracotta
+#tile.etfuturum.glazedTerracottaPink.name=Pink Glazed Terracotta
+#tile.etfuturum.glazedTerracottaGray.name=Gray Glazed Terracotta
+#tile.etfuturum.glazedTerracottaSilver.name=Light Gray Glazed Terracotta
+#tile.etfuturum.glazedTerracottaCyan.name=Cyan Glazed Terracotta
+#tile.etfuturum.glazedTerracottaPurple.name=Purple Glazed Terracotta
+#tile.etfuturum.glazedTerracottaBlue.name=Blue Glazed Terracotta
+#tile.etfuturum.glazedTerracottaBrown.name=Brown Glazed Terracotta
+#tile.etfuturum.glazedTerracottaGreen.name=Green Glazed Terracotta
+#tile.etfuturum.glazedTerracottaRed.name=Red Glazed Terracotta
+#tile.etfuturum.glazedTerracottaBlack.name=Black Glazed Terracotta
+
+tile.concrete_powder.name=%s Concrete Powder
+tile.concrete.name=%s Concrete
+
+color.white=White
+color.orange=Orange
+color.magenta=Magenta
+color.lightBlue=Light Blue
+color.yellow=Yellow
+color.lime=Lime
+color.pink=Pink
+color.gray=Gray
+color.silver=Light Gray
+color.cyan=Cyan
+color.purple=Purple
+color.blue=Blue
+color.brown=Brown
+color.green=Green
+color.red=Red
+color.black=Black
+
+#NYI
+#tile.shulkerBoxWhite.name=White Shulker Box
+#tile.shulkerBoxOrange.name=Orange Shulker Box
+#tile.shulkerBoxMagenta.name=Magenta Shulker Box
+#tile.shulkerBoxLightBlue.name=Light Blue Shulker Box
+#tile.shulkerBoxYellow.name=Yellow Shulker Box
+#tile.shulkerBoxLime.name=Lime Shulker Box
+#tile.shulkerBoxPink.name=Pink Shulker Box
+#tile.shulkerBoxGray.name=Gray Shulker Box
+#ile.shulkerBoxSilver.name=Light Gray Shulker Box
+#tile.shulkerBoxCyan.name=Cyan Shulker Box
+#tile.shulkerBoxPurple.name=Purple Shulker Box
+#tile.shulkerBoxBlue.name=Blue Shulker Box
+#ile.shulkerBoxBrown.name=Brown Shulker Box
+#tile.shulkerBoxGreen.name=Green Shulker Box
+#tile.shulkerBoxRed.name=Red Shulker Box
+#tile.shulkerBoxBlack.name=Black Shulker Box
+
+util.totemBreak=§a§oYour Totem of Undying shatters...
+
+death.attack.hotFloor=%1$s discovered floor was lava
+death.attack.hotFloor.player=%1$s walked into danger zone due to %2$s
 
 # Banners
 item.banner.black.name=Black Banner
@@ -784,3 +925,72 @@ item.banner.straight_cross.lightBlue=Light Blue Cross
 item.banner.straight_cross.magenta=Magenta Cross
 item.banner.straight_cross.orange=Orange Cross
 item.banner.straight_cross.white=White Cross
+
+
+
+
+#vanilla overrides
+tile.clayHardenedStained.black.name=Black Terracotta
+tile.clayHardenedStained.red.name=Red Terracotta
+tile.clayHardenedStained.green.name=Green Terracotta
+tile.clayHardenedStained.brown.name=Brown Terracotta
+tile.clayHardenedStained.blue.name=Blue Terracotta
+tile.clayHardenedStained.purple.name=Purple Terracotta
+tile.clayHardenedStained.cyan.name=Cyan Terracotta
+tile.clayHardenedStained.silver.name=Light Gray Terracotta
+tile.clayHardenedStained.gray.name=Gray Terracotta
+tile.clayHardenedStained.pink.name=Pink Terracotta
+tile.clayHardenedStained.lime.name=Lime Terracotta
+tile.clayHardenedStained.yellow.name=Yellow Terracotta
+tile.clayHardenedStained.lightBlue.name=Light Blue Terracotta
+tile.clayHardenedStained.magenta.name=Magenta Terracotta
+tile.clayHardenedStained.orange.name=Orange Terracotta
+tile.clayHardenedStained.white.name=White Terracotta
+tile.clayHardened.name=Terracotta
+
+tile.monsterStoneEgg.stone.name=Infested Stone
+tile.monsterStoneEgg.cobble.name=Infested Cobblestone
+tile.monsterStoneEgg.brick.name=Infested Stone Bricks
+tile.monsterStoneEgg.mossybrick.name=Infested Mossy Stone Bricks
+tile.monsterStoneEgg.crackedbrick.name=Infested Cracked Stone Bricks
+tile.monsterStoneEgg.chiseledbrick.name=Infested Chiseled Stone Bricks
+
+tile.log.name=Log
+tile.log.oak.name=Oak Log
+tile.log.spruce.name=Spruce Log
+tile.log.birch.name=Birch Log
+tile.log.jungle.name=Jungle Log
+tile.log.acacia.name=Acacia Log
+tile.log.big_oak.name=Dark Oak Log
+tile.wood.oak.name=Oak Planks
+tile.wood.spruce.name=Spruce Planks
+tile.wood.birch.name=Birch Planks
+tile.wood.jungle.name=Jungle Planks
+tile.wood.acacia.name=Acacia Planks
+tile.wood.big_oak.name=Dark Oak Planks
+tile.woodSlab.oak.name=Oak Slab
+tile.woodSlab.spruce.name=Spruce Slab
+tile.woodSlab.birch.name=Birch Slab
+tile.woodSlab.jungle.name=Jungle Slab
+tile.woodSlab.acacia.name=Acacia Slab
+tile.woodSlab.big_oak.name=Dark Oak Slab
+tile.stairsWood.name=Oak Stairs
+tile.stairsWoodSpruce.name=Spruce Stairs
+tile.stairsWoodBirch.name=Birch Stairs
+tile.stairsWoodJungle.name=Jungle Stairs
+tile.stairsWoodAcacia.name=Acacia Stairs
+tile.stairsWoodDarkOak.name=Dark Oak Stairs
+
+tile.trapdoor.name=Oak Trapdoor
+tile.doublePlant.grass.name=Tallgrass
+tile.quartzBlock.lines.name=Quartz Pillar
+tile.mobSpawner.name=Spawner
+tile.stoneMoss.name=Mossy Cobblestone
+tile.sandStone.smooth.name=Cut Sandstone
+tile.netherBrick.name=Nether Bricks
+tile.daylightDetector.name=Daylight Detector
+
+item.redstone.name=Redstone Dust
+item.fish.cod.raw.name=Raw Cod
+item.fish.cod.cooked.name=Cooked Cod
+item.melon.name=Melon Slice

@@ -1,15 +1,15 @@
 package ganymedes01.etfuturum.blocks;
 
-import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModBlocks.ISubBlocksBlock;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.GUIsID;
+
+import java.util.Random;
+
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -18,25 +18,31 @@ import net.minecraft.item.ItemAnvilBlock;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class NewAnvil extends BlockAnvil implements IConfigurable, ISubBlocksBlock {
 
 	public NewAnvil() {
 		setHardness(5.0F);
-		setCreativeTab(null);
 		setResistance(2000.0F);
 		setStepSound(soundTypeAnvil);
 		setBlockName(Utils.getUnlocalisedName("anvil"));
+		setCreativeTab(ConfigurationHandler.enableAnvil ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
+		if (!ConfigurationHandler.enableTileReplacement)
+			return Item.getItemFromBlock(ModBlocks.anvil);
 		return Item.getItemFromBlock(Blocks.anvil);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World world, int x, int y, int z) {
+		if (!ConfigurationHandler.enableTileReplacement)
+			return Item.getItemFromBlock(ModBlocks.anvil);
 		return Item.getItemFromBlock(Blocks.anvil);
 	}
 
@@ -52,7 +58,7 @@ public class NewAnvil extends BlockAnvil implements IConfigurable, ISubBlocksBlo
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableAnvil;
+		return ConfigurationHandler.enableAnvil;
 	}
 
 	@Override
@@ -61,7 +67,7 @@ public class NewAnvil extends BlockAnvil implements IConfigurable, ISubBlocksBlo
 	}
 
 	public static void onPlayerInteract(PlayerInteractEvent event) {
-		if (!EtFuturum.enableAnvil)
+		if (!ConfigurationHandler.enableAnvil)
 			return;
 
 		World world = event.world;

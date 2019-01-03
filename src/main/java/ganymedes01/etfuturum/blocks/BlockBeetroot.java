@@ -1,15 +1,15 @@
 package ganymedes01.etfuturum.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBeetroot extends BlockCrops implements IConfigurable {
 
@@ -53,6 +53,6 @@ public class BlockBeetroot extends BlockCrops implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableBeetroot;
+		return ConfigurationHandler.enableBeetroot;
 	}
 }

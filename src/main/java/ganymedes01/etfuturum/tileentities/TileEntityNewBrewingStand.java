@@ -28,7 +28,8 @@ import net.minecraftforge.event.ForgeEventFactory;
 public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 
 	private static final int[] TOP_SLOTS = new int[] { 3 };
-	private static final int[] SIDE_SLOTS = new int[] { 0, 1, 2 };
+	private static final int[] SLOTS_FOR_DOWN = new int[] {0, 1, 2};
+	private static final int[] OUTPUT_SLOTS = new int[] {0, 1, 2, 4};
 
 	private ItemStack[] inventory = new ItemStack[5];
 	private int brewTime;
@@ -271,7 +272,14 @@ public class TileEntityNewBrewingStand extends TileEntityBrewingStand {
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 1 ? TOP_SLOTS : SIDE_SLOTS;
+		if (side == 1)
+        {
+            return TOP_SLOTS;
+        }
+        else
+        {
+            return side == 0 ? SLOTS_FOR_DOWN : OUTPUT_SLOTS;
+        }
 	}
 
 	public int getFuel() {

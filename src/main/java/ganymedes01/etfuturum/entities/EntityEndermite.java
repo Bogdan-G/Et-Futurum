@@ -38,7 +38,7 @@ public class EntityEndermite extends EntityMob {
 
 		experienceValue = 3;
 		setSize(0.4F, 0.3F);
-		tasks.addTask(1, new EntityAISwimming(this));
+		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
 		tasks.addTask(3, new EntityAIWander(this, 1.0D));
 		tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));

@@ -23,6 +23,7 @@ import ganymedes01.etfuturum.items.RabbitHide;
 import ganymedes01.etfuturum.items.RabbitRaw;
 import ganymedes01.etfuturum.items.RabbitStew;
 import ganymedes01.etfuturum.items.TippedArrow;
+import ganymedes01.etfuturum.items.TotemUndying;
 import net.minecraft.item.Item;
 
 public class ModItems {
@@ -47,6 +48,8 @@ public class ModItems {
 	public static final Item dragon_breath = new DragonBreath();
 	public static final Item elytra = new Elytra();
 	public static final Item end_crystal = new EndCrystal();
+	
+	public static final Item totem = new TotemUndying();
 
 	public static void init() {
 		try {

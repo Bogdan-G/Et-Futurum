@@ -56,7 +56,7 @@ public class EntityRabbit extends EntityAnimal {
 		ReflectionHelper.setPrivateValue(EntityLiving.class, this, new EntityRabbit.RabbitMoveHelper(), "moveHelper", "field_70765_h");
 		getNavigator().setAvoidsWater(true);
 		//		navigator.func_179678_a(2.5F);
-		tasks.addTask(1, new EntityAISwimming(this));
+		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(1, new EntityRabbit.AIPanic(1.33D));
 		tasks.addTask(2, new EntityAIMate(this, 0.8D));
 		tasks.addTask(3, new EntityAITempt(this, 1.0D, Items.carrot, false));

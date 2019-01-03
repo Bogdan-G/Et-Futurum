@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class GenericSlab extends Block implements ISubBlocksBlock, IConfigurable {
 
-	private final Block base;
+	protected final Block base;
 
 	public GenericSlab(Material material, Block base) {
 		super(material);

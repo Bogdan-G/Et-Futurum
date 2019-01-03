@@ -1,19 +1,17 @@
 package ganymedes01.etfuturum.items;
 
+import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
+import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.dispenser.DispenserBehaviourLingeringPotion;
+import ganymedes01.etfuturum.entities.EntityLingeringPotion;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.common.collect.HashMultimap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.IConfigurable;
-import ganymedes01.etfuturum.core.utils.Utils;
-import ganymedes01.etfuturum.dispenser.DispenserBehaviourLingeringPotion;
-import ganymedes01.etfuturum.entities.EntityLingeringPotion;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,6 +32,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import com.google.common.collect.HashMultimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class LingeringPotion extends ItemPotion implements IConfigurable {
 
 	@SideOnly(Side.CLIENT)
@@ -42,9 +45,9 @@ public class LingeringPotion extends ItemPotion implements IConfigurable {
 	public LingeringPotion() {
 		setTextureName("potion");
 		setUnlocalizedName(Utils.getUnlocalisedName("lingering_potion"));
-		setCreativeTab(EtFuturum.enableLingeringPotions ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableLingeringPotions ? EtFuturum.creativeTab : null);
 
-		if (EtFuturum.enableLingeringPotions)
+		if (ConfigurationHandler.enableLingeringPotions)
 			BlockDispenser.dispenseBehaviorRegistry.putObject(this, new DispenserBehaviourLingeringPotion());
 	}
 
@@ -231,6 +234,6 @@ public class LingeringPotion extends ItemPotion implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableLingeringPotions;
+		return ConfigurationHandler.enableLingeringPotions;
 	}
 }

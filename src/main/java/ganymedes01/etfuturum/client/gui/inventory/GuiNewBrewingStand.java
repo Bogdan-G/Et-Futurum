@@ -72,7 +72,7 @@ public class GuiNewBrewingStand extends GuiContainer {
 			}
 
 			if (j1 > 0)
-				drawTexturedModalRect(k + 65, l + 14 + 29 - j1, 185, 29 - j1, 12, j1);
+				drawTexturedModalRect(k + 63, l + 14 + 29 - j1, 185, 29 - j1, 12, j1);
 		}
 
 		int fuel = tile.getFuel();

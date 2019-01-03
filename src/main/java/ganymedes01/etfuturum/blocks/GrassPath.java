@@ -1,14 +1,14 @@
 package ganymedes01.etfuturum.blocks;
 
-import java.lang.reflect.Field;
-import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
+
+import java.lang.reflect.Field;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -23,6 +23,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GrassPath extends Block implements IConfigurable {
 
@@ -39,7 +41,7 @@ public class GrassPath extends Block implements IConfigurable {
 		setBlockTextureName("grass_path");
 		setBlockName(Utils.getUnlocalisedName("grass_path"));
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
-		setCreativeTab(EtFuturum.enableGrassPath ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableGrassPath ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -88,11 +90,11 @@ public class GrassPath extends Block implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableGrassPath;
+		return ConfigurationHandler.enableGrassPath;
 	}
 
 	public static void onPlayerInteract(PlayerInteractEvent event) {
-		if (EtFuturum.enableGrassPath)
+		if (ConfigurationHandler.enableGrassPath)
 			if (event.entityPlayer != null) {
 				World world = event.entityPlayer.worldObj;
 				if (event.action == Action.RIGHT_CLICK_BLOCK)

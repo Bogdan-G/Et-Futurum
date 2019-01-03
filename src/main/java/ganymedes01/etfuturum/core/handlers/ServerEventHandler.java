@@ -1,28 +1,16 @@
 package ganymedes01.etfuturum.core.handlers;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.Random;
-
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import cpw.mods.fml.relauncher.Side;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
 import ganymedes01.etfuturum.ModEnchantments;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.blocks.BlockStrippedNewLog;
+import ganymedes01.etfuturum.blocks.BlockStrippedOldLog;
 import ganymedes01.etfuturum.blocks.CoarseDirt;
 import ganymedes01.etfuturum.blocks.GrassPath;
 import ganymedes01.etfuturum.blocks.NewAnvil;
 import ganymedes01.etfuturum.command.SetPlayerModelCommand;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.entities.EntityEndermite;
 import ganymedes01.etfuturum.entities.EntityNewSnowGolem;
 import ganymedes01.etfuturum.entities.EntityRabbit;
@@ -34,6 +22,18 @@ import ganymedes01.etfuturum.items.TippedArrow;
 import ganymedes01.etfuturum.lib.Reference;
 import ganymedes01.etfuturum.network.BlackHeartParticlesMessage;
 import ganymedes01.etfuturum.network.SetPlayerModelMessage;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Random;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -59,14 +59,20 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
@@ -86,6 +92,12 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import cpw.mods.fml.relauncher.Side;
 
 public class ServerEventHandler {
 
@@ -98,7 +110,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerLoggedIn(PlayerLoggedInEvent event) {
-		if (EtFuturum.enablePlayerSkinOverlay)
+		if (ConfigurationHandler.enablePlayerSkinOverlay)
 			playerLoggedInCooldown = 20;
 	}
 
@@ -108,7 +120,7 @@ public class ServerEventHandler {
 		if (event.phase != TickEvent.Phase.END || event.side != Side.SERVER)
 			return;
 
-		if (EtFuturum.enablePlayerSkinOverlay)
+		if (ConfigurationHandler.enablePlayerSkinOverlay)
 			if (playerLoggedInCooldown != null)
 				if (--playerLoggedInCooldown <= 0) {
 					for (World world : MinecraftServer.getServer().worldServers)
@@ -132,7 +144,7 @@ public class ServerEventHandler {
 	public void livingUpdate(LivingUpdateEvent event) {
 		ModEnchantments.onLivingUpdate(event.entityLiving);
 
-		if (EtFuturum.enableVillagerZombies)
+		if (ConfigurationHandler.enableVillagerZombies)
 			if (!event.entityLiving.worldObj.isRemote && event.entityLiving.getClass() == EntityZombie.class) {
 				EntityZombie zombie = (EntityZombie) event.entityLiving;
 				if (zombie.isVillager()) {
@@ -145,7 +157,7 @@ public class ServerEventHandler {
 				}
 			}
 
-		if (EtFuturum.enableShearableGolems)
+		if (ConfigurationHandler.enableShearableGolems)
 			if (!event.entityLiving.worldObj.isRemote && event.entityLiving.getClass() == EntitySnowman.class) {
 				EntityNewSnowGolem golen = new EntityNewSnowGolem(event.entityLiving.worldObj);
 				golen.copyLocationAndAnglesFrom(event.entityLiving);
@@ -237,7 +249,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerLoadFromFileEvent(PlayerEvent.LoadFromFile event) {
-		if (!EtFuturum.enableEnchants)
+		if (!ConfigurationHandler.enableEnchants)
 			return;
 		try {
 			File file = event.getPlayerFile(Reference.MOD_ID);
@@ -259,7 +271,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerSaveFromFileEvent(PlayerEvent.SaveToFile event) {
-		if (!EtFuturum.enableEnchants)
+		if (!ConfigurationHandler.enableEnchants)
 			return;
 		try {
 			File file = event.getPlayerFile(Reference.MOD_ID);
@@ -280,7 +292,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void harvestEvent(BlockEvent.HarvestDropsEvent event) {
-		if (EtFuturum.enableSilkTouchingMushrooms && event.isSilkTouching)
+		if (ConfigurationHandler.enableSilkTouchingMushrooms && event.isSilkTouching)
 			if (event.block == Blocks.brown_mushroom_block) {
 				event.drops.clear();
 				event.drops.add(new ItemStack(ModBlocks.brown_mushroom_block));
@@ -289,7 +301,7 @@ public class ServerEventHandler {
 				event.drops.add(new ItemStack(ModBlocks.red_mushroom_block));
 			}
 
-		if (EtFuturum.enableSticksFromDeadBushes)
+		if (ConfigurationHandler.enableSticksFromDeadBushes)
 			if (event.block == Blocks.deadbush) {
 				boolean isShears = event.harvester != null && event.harvester.getCurrentEquippedItem() != null && event.harvester.getCurrentEquippedItem().getItem() instanceof ItemShears;
 				if (event.harvester == null || event.harvester.getCurrentEquippedItem() == null || !isShears)
@@ -297,7 +309,7 @@ public class ServerEventHandler {
 						event.drops.add(new ItemStack(Items.stick));
 			}
 
-		if (EtFuturum.enableShearableCobwebs)
+		if (ConfigurationHandler.enableShearableCobwebs)
 			if (event.block == Blocks.web && event.harvester != null) {
 				ItemStack stack = event.harvester.getCurrentEquippedItem();
 				if (stack != null && stack.getItem() instanceof ItemShears) {
@@ -311,6 +323,9 @@ public class ServerEventHandler {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		NewAnvil.onPlayerInteract(event);
 		GrassPath.onPlayerInteract(event);
+		
+		BlockStrippedOldLog.onPlayerInteract(event);
+		BlockStrippedNewLog.onPlayerInteract(event);
 	}
 
 	@SubscribeEvent
@@ -323,11 +338,11 @@ public class ServerEventHandler {
 		if (event.entityLiving.worldObj.isRemote)
 			return;
 
-		if (EtFuturum.enableSkullDrop)
+		if (ConfigurationHandler.enableSkullDrop)
 			dropHead(event.entityLiving, event.source, event.lootingLevel, event.drops);
 
 		Random rand = event.entityLiving.worldObj.rand;
-		if (EtFuturum.enableMutton && event.entityLiving instanceof EntitySheep) {
+		if (ConfigurationHandler.enableMutton && event.entityLiving instanceof EntitySheep) {
 			int amount = rand.nextInt(3) + 1 + rand.nextInt(1 + event.lootingLevel);
 			for (int i = 0; i < amount; i++)
 				if (event.entityLiving.isBurning())
@@ -377,7 +392,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void teleportEvent(EnderTeleportEvent event) {
-		if (EtFuturum.enableEndermite) {
+		if (ConfigurationHandler.enableEndermite) {
 			EntityLivingBase entity = event.entityLiving;
 			if (entity instanceof EntityPlayerMP)
 				if (entity.getRNG().nextFloat() < 0.05F && entity.worldObj.getGameRules().getGameRuleBooleanValue("doMobSpawning")) {
@@ -393,15 +408,15 @@ public class ServerEventHandler {
 	public void spawnEvent(EntityJoinWorldEvent event) {
 		if (event.entity instanceof EntityPig) {
 			EntityPig pig = (EntityPig) event.entity;
-			if (EtFuturum.enableBeetroot)
+			if (ConfigurationHandler.enableBeetroot)
 				pig.tasks.addTask(4, new EntityAITempt(pig, 1.2, ModItems.beetroot, false));
 		} else if (event.entity instanceof EntityChicken) {
 			EntityChicken chicken = (EntityChicken) event.entity;
-			if (EtFuturum.enableBeetroot)
+			if (ConfigurationHandler.enableBeetroot)
 				chicken.tasks.addTask(3, new EntityAITempt(chicken, 1.0D, ModItems.beetroot_seeds, false));
 		} else if (event.entity instanceof EntityWolf) {
 			EntityWolf wolf = (EntityWolf) event.entity;
-			if (EtFuturum.enableRabbit)
+			if (ConfigurationHandler.enableRabbit)
 				wolf.targetTasks.addTask(4, new EntityAITargetNonTamed(wolf, EntityRabbit.class, 200, false));
 		} else if (event.entity instanceof EntityVillager) {
 			EntityVillager villager = (EntityVillager) event.entity;
@@ -427,12 +442,12 @@ public class ServerEventHandler {
 		EntityAnimal animal = (EntityAnimal) event.target;
 		if (!animal.isChild()) {
 			if (animal instanceof EntityPig) {
-				if (stack.getItem() == ModItems.beetroot && EtFuturum.enableBeetroot)
+				if (stack.getItem() == ModItems.beetroot && ConfigurationHandler.enableBeetroot)
 					setAnimalInLove(animal, event.entityPlayer, stack);
 			} else if (animal instanceof EntityChicken)
-				if (stack.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
+				if (stack.getItem() == ModItems.beetroot_seeds && ConfigurationHandler.enableBeetroot)
 					setAnimalInLove(animal, event.entityPlayer, stack);
-		} else if (EtFuturum.enableBabyGrowthBoost && isFoodItem(animal, stack))
+		} else if (ConfigurationHandler.enableBabyGrowthBoost && isFoodItem(animal, stack))
 			feedBaby(animal, event.entityPlayer, stack);
 	}
 
@@ -467,9 +482,9 @@ public class ServerEventHandler {
 	private boolean isFoodItem(EntityAnimal animal, ItemStack food) {
 		if (animal.isBreedingItem(food))
 			return true;
-		else if (animal instanceof EntityPig && food.getItem() == ModItems.beetroot && EtFuturum.enableBeetroot)
+		else if (animal instanceof EntityPig && food.getItem() == ModItems.beetroot && ConfigurationHandler.enableBeetroot)
 			return true;
-		else if (animal instanceof EntityChicken && food.getItem() == ModItems.beetroot_seeds && EtFuturum.enableBeetroot)
+		else if (animal instanceof EntityChicken && food.getItem() == ModItems.beetroot_seeds && ConfigurationHandler.enableBeetroot)
 			return true;
 		else
 			return false;
@@ -477,7 +492,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void entityHurtEvent(LivingHurtEvent event) {
-		if (!EtFuturum.enableDmgIndicator)
+		if (!ConfigurationHandler.enableDmgIndicator)
 			return;
 		int amount = MathHelper.floor_float(Math.min(event.entityLiving.getHealth(), event.ammount) / 2F);
 		if (amount <= 0)
@@ -503,7 +518,7 @@ public class ServerEventHandler {
 
 	@SubscribeEvent
 	public void entityStruckByLightning(EntityStruckByLightningEvent event) {
-		if (EtFuturum.enableVillagerTurnsIntoWitch && event.entity instanceof EntityVillager) {
+		if (ConfigurationHandler.enableVillagerTurnsIntoWitch && event.entity instanceof EntityVillager) {
 			EntityVillager villager = (EntityVillager) event.entity;
 			if (!villager.worldObj.isRemote) {
 				EntityWitch witch = new EntityWitch(villager.worldObj);
@@ -514,4 +529,63 @@ public class ServerEventHandler {
 			}
 		}
 	}
+	
+	//TODO totem
+	@SubscribeEvent
+	public void beforePlayerHurt(LivingAttackEvent event) {
+		Entity entity = event.entity;
+		if ((entity == null) || (!(entity instanceof EntityPlayer))) {
+			return;
+		}
+		EntityPlayer player = (EntityPlayer)entity;
+		
+		handleTotemCheck(player, event);
+		
+		if (event.isCanceled()) {
+	    	event.setResult(null);
+		}
+		
+	}
+	
+	public void handleTotemCheck(final EntityPlayer player, final LivingAttackEvent event) {
+        if (player.getHealth() > Math.round(event.ammount)) {
+            return;
+        }
+        if (!this.playerHasItem(player, new ItemStack(ModItems.totem), false)) {
+            return;
+        }
+        this.decreaseItemByOne(player, ModItems.totem);
+        //this.spawnTotemParticles(player);
+        player.worldObj.playSoundEffect(player.posX + 0.5, player.posY + 0.5, player.posZ + 0.5, "etfuturum:item.totem_use", 1.0f, player.worldObj.rand.nextFloat() * 0.1f + 0.9f);
+        
+        player.clearActivePotions();
+		player.setHealth(1.0F);
+		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 900, 1));
+		player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 100, 1));
+		
+		player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("util.totemBreak")));
+
+        event.setCanceled(true);
+    }
+	
+	private boolean playerHasItem(final EntityPlayer player, final ItemStack ist, final boolean checkEnabled) {
+        for (int slot = 0; slot < player.inventory.mainInventory.length; ++slot) {
+            if (player.inventory.mainInventory[slot] != null && player.inventory.mainInventory[slot].isItemEqual(ist)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+	private void decreaseItemByOne(final EntityPlayer player, final Item item) {
+        for (int slot = 0; slot < player.inventory.mainInventory.length; ++slot) {
+            if (player.inventory.mainInventory[slot] != null) {
+                if (player.inventory.mainInventory[slot].getItem() == item) {
+                    player.inventory.decrStackSize(slot, 1);
+                    return;
+                }
+            }
+        }
+    }
+	
 }

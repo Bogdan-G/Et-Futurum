@@ -1,10 +1,8 @@
 package ganymedes01.etfuturum.client.skins;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.client.model.ModelPlayer;
 import ganymedes01.etfuturum.command.SetPlayerModelCommand;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -17,6 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class NewRenderPlayer extends RenderPlayer {
@@ -64,7 +64,7 @@ public class NewRenderPlayer extends RenderPlayer {
 
 	@Override
 	protected ResourceLocation getEntityTexture(AbstractClientPlayer player) {
-		if (!EtFuturum.enablePlayerSkinOverlay || player.getLocationSkin() == null)
+		if (!ConfigurationHandler.enablePlayerSkinOverlay || player.getLocationSkin() == null)
 			return super.getEntityTexture(player);
 		return new ResourceLocation(Reference.MOD_ID, player.getLocationSkin().getResourcePath());
 	}

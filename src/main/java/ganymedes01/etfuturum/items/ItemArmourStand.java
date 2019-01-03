@@ -1,14 +1,16 @@
 package ganymedes01.etfuturum.items;
 
+import ganymedes01.etfuturum.EtFuturum;
+import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
+import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.entities.EntityArmourStand;
+import ganymedes01.etfuturum.entities.Rotations;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.IConfigurable;
-import ganymedes01.etfuturum.core.utils.Utils;
-import ganymedes01.etfuturum.entities.EntityArmourStand;
-import ganymedes01.etfuturum.entities.Rotations;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -25,7 +27,7 @@ public class ItemArmourStand extends Item implements IConfigurable {
 		setMaxStackSize(16);
 		setTextureName("wooden_armorstand");
 		setUnlocalizedName(Utils.getUnlocalisedName("wooden_armorstand"));
-		setCreativeTab(EtFuturum.enableArmourStand ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableArmourStand ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -122,6 +124,6 @@ public class ItemArmourStand extends Item implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableArmourStand;
+		return ConfigurationHandler.enableArmourStand;
 	}
 }

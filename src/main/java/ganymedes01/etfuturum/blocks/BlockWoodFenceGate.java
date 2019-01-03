@@ -1,14 +1,15 @@
 package ganymedes01.etfuturum.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks.IBurnableBlock;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockWoodFenceGate extends BlockFenceGate implements IBurnableBlock, IConfigurable {
 
@@ -20,7 +21,7 @@ public class BlockWoodFenceGate extends BlockFenceGate implements IBurnableBlock
 		setResistance(5.0F);
 		setStepSound(soundTypeWood);
 		setBlockName(Utils.getUnlocalisedName("fence_gate_" + BlockWoodDoor.names[meta]));
-		setCreativeTab(EtFuturum.enableFences ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableFences ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -31,6 +32,6 @@ public class BlockWoodFenceGate extends BlockFenceGate implements IBurnableBlock
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableFences;
+		return ConfigurationHandler.enableFences;
 	}
 }

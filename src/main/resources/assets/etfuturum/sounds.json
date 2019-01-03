@@ -32,6 +32,80 @@
       "mob/rabbit/bunnymurder"
     ]
   },
+  "mob.husk.death": {
+    "category": "hostile",
+    "sounds": [
+      "mob/husk/death1",
+	  "mob/husk/death2"
+    ]
+  },
+  "mob.husk.hurt": {
+    "category": "hostile",
+    "sounds": [
+      "mob/husk/hurt1",
+	  "mob/husk/hurt2"
+    ]
+  },
+  "mob.husk.idle": {
+    "category": "hostile",
+    "sounds": [
+      "mob/husk/idle1",
+	  "mob/husk/idle2",
+	  "mob/husk/idle3"
+    ]
+  },
+  "mob.husk.step": {
+    "category": "hostile",
+    "sounds": [
+      "mob/husk/step1",
+	  "mob/husk/step2",
+	  "mob/husk/step3",
+	  "mob/husk/step4",
+	  "mob/husk/step5"
+    ]
+  },
+  "mob.stray.death": {
+    "category": "hostile",
+    "sounds": [
+      "mob/stray/death1",
+	  "mob/stray/death2"
+    ]
+  },
+  "mob.stray.hurt": {
+    "category": "hostile",
+    "sounds": [
+      "mob/stray/hurt1",
+	  "mob/stray/hurt2",
+	  "mob/stray/hurt3",
+	  "mob/stray/hurt4"
+    ]
+  },
+  "mob.stray.idle": {
+    "category": "hostile",
+    "sounds": [
+      "mob/stray/idle1",
+	  "mob/stray/idle2",
+	  "mob/stray/idle3",
+	  "mob/stray/idle4"
+    ]
+  },
+  "mob.stray.step": {
+    "category": "hostile",
+    "sounds": [
+      "mob/stray/step1",
+	  "mob/stray/step2",
+	  "mob/stray/step3",
+	  "mob/stray/step4"
+    ]
+  },
+  
+  "item.totem_use": {
+    "category": "master",
+    "sounds": [
+      "item/totem_use"
+    ]
+  },
+  
   "block.brewing_stand.brew": {
     "category": "block",
     "sounds": [

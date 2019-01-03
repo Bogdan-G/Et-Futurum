@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -25,7 +26,7 @@ public class Stone extends BlockGeneric implements IConfigurable {
 		setBlockTextureName("stone");
 		setStepSound(soundTypePiston);
 		setBlockName(Utils.getUnlocalisedName("stone"));
-		setCreativeTab(EtFuturum.enableStones ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableStones ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -35,6 +36,6 @@ public class Stone extends BlockGeneric implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableStones;
+		return ConfigurationHandler.enableStones;
 	}
 }

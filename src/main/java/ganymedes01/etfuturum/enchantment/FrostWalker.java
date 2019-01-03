@@ -10,10 +10,20 @@ public class FrostWalker extends Enchantment {
 	public static int ID = 36;
 
 	public FrostWalker() {
-		super(ID, 0, EnumEnchantmentType.armor_feet);
+		super(ID, 1, EnumEnchantmentType.armor_feet);
 		Enchantment.addToBookList(this);
 		setName("frost_walker");
 	}
+	
+	public int getMinEnchantability(int enchantmentLevel)
+    {
+        return enchantmentLevel * 10;
+    }
+
+    public int getMaxEnchantability(int enchantmentLevel)
+    {
+        return this.getMinEnchantability(enchantmentLevel) + 15;
+    }
 
 	@Override
 	public int getMaxLevel() {

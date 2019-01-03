@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.client.model.ModelElytra;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +27,7 @@ public class Elytra extends ItemArmor implements IConfigurable {
 		setMaxStackSize(1);
 		setTextureName("elytra");
 		setUnlocalizedName(Utils.getUnlocalisedName("elytra"));
-		setCreativeTab(EtFuturum.enableElytra ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableElytra ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -60,6 +61,6 @@ public class Elytra extends ItemArmor implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableElytra;
+		return ConfigurationHandler.enableElytra;
 	}
 }

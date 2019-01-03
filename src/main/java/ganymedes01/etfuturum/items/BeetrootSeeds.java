@@ -3,6 +3,7 @@ package ganymedes01.etfuturum.items;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;
@@ -16,9 +17,9 @@ public class BeetrootSeeds extends ItemSeeds implements IConfigurable {
 		super(ModBlocks.beetroot, Blocks.farmland);
 		setTextureName("beetroot_seeds");
 		setUnlocalizedName(Utils.getUnlocalisedName("beetroot_seeds"));
-		setCreativeTab(EtFuturum.enableBeetroot ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableBeetroot ? EtFuturum.creativeTab : null);
 
-		if (EtFuturum.enableBeetroot) {
+		if (ConfigurationHandler.enableBeetroot) {
 			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(this), 1, 2, 5));
 			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(this), 1, 2, 5));
 			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(this), 1, 2, 5));
@@ -31,6 +32,6 @@ public class BeetrootSeeds extends ItemSeeds implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableBeetroot;
+		return ConfigurationHandler.enableBeetroot;
 	}
 }

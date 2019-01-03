@@ -1,21 +1,22 @@
 package ganymedes01.etfuturum.core.handlers;
 
+import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
-import cpw.mods.fml.relauncher.Side;
-import ganymedes01.etfuturum.EtFuturum;
-import ganymedes01.etfuturum.IConfigurable;
-import ganymedes01.etfuturum.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
+import cpw.mods.fml.relauncher.Side;
 
 public class WorldTickEventHandler {
 
@@ -29,13 +30,13 @@ public class WorldTickEventHandler {
 
 		if (replacements == null) {
 			replacements = new HashMap<Block, Block>();
-			if (EtFuturum.enableBrewingStands)
+			if (ConfigurationHandler.enableBrewingStands)
 				replacements.put(Blocks.brewing_stand, ModBlocks.brewing_stand);
-			if (EtFuturum.enableColourfulBeacons)
+			if (ConfigurationHandler.enableColourfulBeacons)
 				replacements.put(Blocks.beacon, ModBlocks.beacon);
-			if (EtFuturum.enableEnchants)
+			if (ConfigurationHandler.enableEnchants)
 				replacements.put(Blocks.enchanting_table, ModBlocks.enchantment_table);
-			if (EtFuturum.enableInvertedDaylightSensor)
+			if (ConfigurationHandler.enableInvertedDaylightSensor)
 				replacements.put(Blocks.daylight_detector, ModBlocks.daylight_sensor);
 		}
 

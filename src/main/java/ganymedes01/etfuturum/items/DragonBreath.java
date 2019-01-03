@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.items;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,11 +14,11 @@ public class DragonBreath extends Item implements IConfigurable {
 		setTextureName("dragon_breath");
 		setContainerItem(Items.glass_bottle);
 		setUnlocalizedName(Utils.getUnlocalisedName("dragon_breath"));
-		setCreativeTab(EtFuturum.enableLingeringPotions ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableLingeringPotions ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableLingeringPotions;
+		return ConfigurationHandler.enableLingeringPotions;
 	}
 }

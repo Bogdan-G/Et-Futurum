@@ -1,12 +1,14 @@
 package ganymedes01.etfuturum.blocks;
 
-import java.util.Random;
-
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModItems;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.RenderIDs;
+
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -23,7 +25,7 @@ public class ChorusPlant extends Block implements IConfigurable {
 		setStepSound(soundTypeWood);
 		setBlockTextureName("chorus_plant");
 		setBlockName(Utils.getUnlocalisedName("chorus_plant"));
-		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableChorusFruit ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -64,6 +66,6 @@ public class ChorusPlant extends Block implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableChorusFruit;
+		return ConfigurationHandler.enableChorusFruit;
 	}
 }

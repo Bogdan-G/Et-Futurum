@@ -1,9 +1,8 @@
 package ganymedes01.etfuturum.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.ModSounds;
 import ganymedes01.etfuturum.lib.Reference;
@@ -14,6 +13,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class SlimeBlock extends Block implements IConfigurable {
 
@@ -23,7 +24,7 @@ public class SlimeBlock extends Block implements IConfigurable {
 		setBlockTextureName("slime");
 		setStepSound(ModSounds.soundSlime);
 		setBlockName(Utils.getUnlocalisedName("slime"));
-		setCreativeTab(EtFuturum.enableSlimeBlock ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableSlimeBlock ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -79,6 +80,6 @@ public class SlimeBlock extends Block implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableSlimeBlock;
+		return ConfigurationHandler.enableSlimeBlock;
 	}
 }

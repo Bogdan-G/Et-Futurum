@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.items;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,7 +21,7 @@ public class ChorusFruit extends ItemFood implements IConfigurable {
 		setAlwaysEdible();
 		setTextureName("chorus_fruit");
 		setUnlocalizedName(Utils.getUnlocalisedName("chorus_fruit"));
-		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableChorusFruit ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -97,6 +98,6 @@ public class ChorusFruit extends ItemFood implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableChorusFruit;
+		return ConfigurationHandler.enableChorusFruit;
 	}
 }

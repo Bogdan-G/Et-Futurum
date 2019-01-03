@@ -1,9 +1,9 @@
 package ganymedes01.etfuturum.blocks;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
 import ganymedes01.etfuturum.ModBlocks;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class CoarseDirt extends Block implements IConfigurable {
 
@@ -23,7 +24,7 @@ public class CoarseDirt extends Block implements IConfigurable {
 		setStepSound(soundTypeGravel);
 		setBlockTextureName("coarse_dirt");
 		setBlockName(Utils.getUnlocalisedName("coarse_dirt"));
-		setCreativeTab(EtFuturum.enableCoarseDirt ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableCoarseDirt ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -33,11 +34,11 @@ public class CoarseDirt extends Block implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableCoarseDirt;
+		return ConfigurationHandler.enableCoarseDirt;
 	}
 
 	public static void onHoeEvent(UseHoeEvent event) {
-		if (EtFuturum.enableCoarseDirt) {
+		if (ConfigurationHandler.enableCoarseDirt) {
 			World world = event.world;
 			if (world.getBlock(event.x, event.y, event.z) == ModBlocks.coarse_dirt) {
 				world.setBlock(event.x, event.y, event.z, Blocks.dirt);

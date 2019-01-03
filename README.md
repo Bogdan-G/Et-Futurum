@@ -1,6 +1,6 @@
 # Et-Futurum
 
-Download: https://minecraft.curseforge.com/projects/et-futurum
+Download: [Releases tab]
 
 WARNING!
 

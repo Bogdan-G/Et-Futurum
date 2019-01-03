@@ -2,6 +2,7 @@ package ganymedes01.etfuturum.blocks;
 
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.IConfigurable;
+import ganymedes01.etfuturum.configuration.ConfigurationHandler;
 import ganymedes01.etfuturum.core.utils.Utils;
 import ganymedes01.etfuturum.lib.RenderIDs;
 import ganymedes01.etfuturum.tileentities.TileEntityEndRod;
@@ -23,7 +24,7 @@ public class EndRod extends BlockContainer implements IConfigurable {
 		setBlockTextureName("end_rod");
 		setBlockName(Utils.getUnlocalisedName("end_rod"));
 		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 1.0F, 0.625F);
-		setCreativeTab(EtFuturum.enableChorusFruit ? EtFuturum.creativeTab : null);
+		setCreativeTab(ConfigurationHandler.enableChorusFruit ? EtFuturum.creativeTab : null);
 	}
 
 	@Override
@@ -73,6 +74,6 @@ public class EndRod extends BlockContainer implements IConfigurable {
 
 	@Override
 	public boolean isEnabled() {
-		return EtFuturum.enableChorusFruit;
+		return ConfigurationHandler.enableChorusFruit;
 	}
 }

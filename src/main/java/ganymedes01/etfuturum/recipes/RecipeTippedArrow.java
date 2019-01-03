@@ -25,7 +25,7 @@ public class RecipeTippedArrow extends ShapedOreRecipe {
 		ItemStack stack = new ItemStack(ModItems.tipped_arrow, 8);
 		if (!effects.isEmpty()) {
 			PotionEffect effect = effects.get(0);
-			TippedArrow.setEffect(stack, Potion.potionTypes[effect.getPotionID()], effect.getDuration());
+			TippedArrow.setEffect(stack, Potion.potionTypes[effect.getPotionID()], effect.getDuration(), effect.getAmplifier() );
 		}
 
 		return stack;
