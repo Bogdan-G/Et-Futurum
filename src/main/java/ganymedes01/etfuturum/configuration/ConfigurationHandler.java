@@ -83,6 +83,8 @@ public class ConfigurationHandler {
 	public static boolean enableTileReplacement;
 
 	public static int maxStonesPerCluster = 33;
+	
+	public static boolean enableReducegetBlockinGen;
 
 	/*
 	private int configInteger(String name, boolean requireRestart, int def) {
@@ -203,6 +205,8 @@ public class ConfigurationHandler {
 		enableBowRendering = cfg.getBoolean("enableBowRendering", "client", true, "Bows render pulling animation on inventory");//configBoolean("Bows render pulling animation on inventory", true, EtFuturum.enableBowRendering);
 		enableFancySkulls = cfg.getBoolean("enableFancySkulls", "client", true, "Skulls render 3D in inventory");//configBoolean("Fancy Skulls", true, EtFuturum.enableFancySkulls);
 		enablePlayerSkinOverlay = cfg.getBoolean("enablePlayerSkinOverlay", "client", false, "Allows use of 1.8 skin format. Disable if skin is displaying oddly.");//configBoolean("Skin overlays", true, EtFuturum.enablePlayerSkinOverlay);
+		
+		enableReducegetBlockinGen = cfg.getBoolean("enableReducegetBlockinGen", "function", false, "Reduce call getBlock in gen Coarse Dirt, Prismarine, Chorus Fruit");
 		
 		
 		if (cfg.hasChanged())

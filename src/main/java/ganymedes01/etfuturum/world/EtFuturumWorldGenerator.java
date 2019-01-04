@@ -35,9 +35,17 @@ public class EtFuturumWorldGenerator implements IWorldGenerator {
 		if (ConfigurationHandler.enableCoarseDirt && world.provider.dimensionId != -1 && world.provider.dimensionId != 1)
 			for (int x = chunkX * 16; x < chunkX * 16 + 16; x++)
 				for (int z = chunkZ * 16; z < chunkZ * 16 + 16; z++)
-					for (int y = 0; y < world.getActualHeight(); y++)
+					if (ConfigurationHandler.enableReducegetBlockinGen) {
+						for (int y = 0; y < world.getActualHeight(); y++) {
 						if (world.getBlock(x, y, z) == Blocks.dirt && world.getBlockMetadata(x, y, z) == 1)
 							world.setBlock(x, y, z, ModBlocks.coarse_dirt, 0, 2);
+						if (y<=32) y++;
+						}
+					} else {
+						for (int y = 0; y < world.getActualHeight(); y++)
+						if (world.getBlock(x, y, z) == Blocks.dirt && world.getBlockMetadata(x, y, z) == 1)
+							world.setBlock(x, y, z, ModBlocks.coarse_dirt, 0, 2);
+					}
 
 		if (ConfigurationHandler.enableStones && ConfigurationHandler.maxStonesPerCluster > 0 && world.provider.dimensionId != -1 && world.provider.dimensionId != 1)
 			for (Iterator<WorldGenMinable> iterator = generators.iterator(); iterator.hasNext();) {
@@ -70,9 +78,17 @@ public class EtFuturumWorldGenerator implements IWorldGenerator {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = 256;
 				int z = chunkZ * 16 + rand.nextInt(16);
+				if (ConfigurationHandler.enableReducegetBlockinGen) {
+				for (; y > 0; y--) {
+					if (!world.getBlock(x, y, z).isAir(world, x, y, z))
+						break;
+					if (y>=80) y--;
+				}
+				} else {
 				for (; y > 0; y--)
 					if (!world.getBlock(x, y, z).isAir(world, x, y, z))
 						break;
+				}
 				int monumentCeiling = y - (1 + rand.nextInt(3));
 				OceanMonument.buildTemple(world, x, monumentCeiling - 22, z);
 				return;
@@ -82,9 +98,17 @@ public class EtFuturumWorldGenerator implements IWorldGenerator {
 			int x = chunkX * 16 + rand.nextInt(16);
 			int y = 256;
 			int z = chunkZ * 16 + rand.nextInt(16);
+			if (ConfigurationHandler.enableReducegetBlockinGen) {
+			for (; y > 0; y--) {
+				if (!world.getBlock(x, y, z).isAir(world, x, y, z))
+					break;
+				if (y>=128) y--;
+			}
+			} else {
 			for (; y > 0; y--)
 				if (!world.getBlock(x, y, z).isAir(world, x, y, z))
 					break;
+			}
 			if (y > 0 && ChorusFlower.canPlantStay(world, x, y + 1, z))
 				generateChorusPlant(world, x, y + 1, z, 0);
 		}
